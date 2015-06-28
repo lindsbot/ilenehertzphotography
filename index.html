@@ -5,14 +5,37 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Ilene Hertz Photography</title>
 </head>
-<body ng-controller='SiteController'>
+<body>
 
-  <navigation-header></navigation-header>
-  <gallery-scroll></gallery-scroll>
-  <footer-social-links></footer-social-links>
+  <div class="navigation-header-container">
+    <div class="header-name">Ilene Hertz Photography</div>
+    <div class="nav-links-container">
+      <ul class="nav-links">
+        <li><a href='/#/'>Home</a></li>
+        <li><a href='#about'>About</a></li>
+        <li><a href='#gallery'>Gallery</a></li>
+        <li><a href='#technique'>Technique</a></li>
+        <li><a href='#blog'>Blog</a></li>
+        <li><a href='#contact'>Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div ng-view></div>
+  </div>
+
+  <div class="social-links"> 
+    <div>Connect with me</div> 
+    <ul> 
+      <li class="entypo social-500px"></li> 
+      <li class="entypo social-flickr"></li> 
+      <li class="entypo social-twitter"></li> 
+    </ul> 
+  </div>
 
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
   <script type="text/javascript" src="src/app.js"></script>
   <script type="text/javascript" src="src/controllers.js"></script>
   <script type="text/javascript" src="src/directives.js"></script>
