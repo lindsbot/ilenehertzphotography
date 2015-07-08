@@ -2,6 +2,7 @@
 <head>
   <meta name="google-site-verification" content="0Gr5fSPHBQ50ERTuVCG_xtqbt32loUf1ntYIk2ew61Q" />
   <link href='https://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Ilene Hertz Photography</title>
 </head>
@@ -29,18 +30,19 @@
   <div class="social-links"> 
     <div>Connect with me</div> 
     <ul> 
-      <li class="entypo social-500px"></li> 
-      <li class="entypo social-flickr"></li> 
-      <li class="entypo social-twitter"></li> 
+      <li class="entypo social-500px"><a href="https://500px.com/IleneHertz" target='_blank'></a></li> 
+      <li class="entypo social-flickr"><a href="https://www.flickr.com/photos/ilenehertzphotography" target='_blank'></a></li> 
+      <li class="entypo social-twitter"><a href="https://twitter.com/isitglutenfree" target='_blank'></a></li> 
     </ul> 
   </div>
 
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
+  <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
   <script type="text/javascript" src="src/app.js"></script>
-  <script type="text/javascript" src="src/controllers.js"></script>
-  <script type="text/javascript" src="src/directives.js"></script>
+  <script type="text/javascript" src="src/controllers/galleryScrollController.js"></script>
+  <script type="text/javascript" src="src/directives/galleryScroll.js"></script>
 </body>
 
 

@@ -53,8 +53,23 @@ a:hover {
   margin: 5px auto;
 }
 
-.gallery-container {
-  width: 100%;
+gallery-scroll img {
+  display: block;
+  margin: 5px auto;
+}
+
+.arrow {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.left-arrow {
+  background-image: url('img/entypo/chevron-thin-left.svg');
+}
+
+.right-arrow {
+  background-image: url('img/entypo/chevron-thin-right.svg');
 }
 
 .social-links {
@@ -77,13 +92,19 @@ a:hover {
   margin: 30px;
 }
 
+.social-links a {
+  width: inherit;
+  height: inherit;
+  display: block;
+}
+
 .social-links .entypo:hover {
   opacity: 0.8;
   cursor: pointer;
 }
 
 .social-500px {
-  background-image: url('img/entypo/500px.svg')
+  background-image: url('img/entypo/500px.svg');
 }
 
 .social-twitter {

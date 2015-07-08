@@ -1,4 +1,4 @@
-var app = angular.module('ilenePhotoSite', ['ngRoute']);
+var app = angular.module('ilenePhotoSite', ['ngRoute', 'bootstrapLightbox']);
 
 app.config(function($routeProvider){
   $routeProvider
@@ -26,20 +26,5 @@ app.config(function($routeProvider){
 });
 
 app.controller('SiteController', function($scope){
-  $scope.imageCollection = [
-    'img/web_001.jpg',
-    'img/web_002.jpg',
-    'img/web_003.jpg',
-    'img/web_004.jpg',
-    'img/web_005.jpg',
-    'img/web_006.jpg',
-    'img/web_007.jpg',
-    'img/web_008.jpg',
-    'img/web_009.jpg',
-    'img/web_010.jpg',
-    'img/web_011.jpg',
-    'img/web_012.jpg',
-    'img/web_013.jpg',
-    'img/web_014.jpg'
-  ]    
+  return;
 });
