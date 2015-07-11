@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.4.2-build.4083+sha.6333d65
+ * @license AngularJS v1.4.2
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -57,7 +57,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.4.2-build.4083+sha.6333d65/' +
+    message += '\nhttp://errors.angularjs.org/1.4.2/' +
       (module ? module + '/' : '') + code;
 
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -2350,11 +2350,11 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.4.2-build.4083+sha.6333d65',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.4.2',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 4,
   dot: 2,
-  codeName: 'snapshot'
+  codeName: 'nebular-readjustment'
 };
 
 
@@ -8306,7 +8306,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
       $compileNode.empty();
 
-      $templateRequest($sce.getTrustedResourceUrl(templateUrl))
+      $templateRequest(templateUrl)
         .then(function(content) {
           var compileNode, tempTemplateAttrs, $template, childBoundTranscludeFn;
 
@@ -8668,19 +8668,24 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         lastValue,
         parentGet, parentSet, compare;
 
+        if (!hasOwnProperty.call(attrs, attrName)) {
+          // In the case of user defined a binding with the same name as a method in Object.prototype but didn't set
+          // the corresponding attribute. We need to make sure subsequent code won't access to the prototype function
+          attrs[attrName] = undefined;
+        }
+
         switch (mode) {
 
           case '@':
-            if (!optional && !hasOwnProperty.call(attrs, attrName)) {
-              destination[scopeName] = attrs[attrName] = void 0;
+            if (!attrs[attrName] && !optional) {
+              destination[scopeName] = undefined;
             }
+
             attrs.$observe(attrName, function(value) {
-              if (isString(value)) {
-                destination[scopeName] = value;
-              }
+              destination[scopeName] = value;
             });
             attrs.$$observers[attrName].$$scope = scope;
-            if (isString(attrs[attrName])) {
+            if (attrs[attrName]) {
               // If the attribute has been provided then we trigger an interpolation to ensure
               // the value is there for use in the link fn
               destination[scopeName] = $interpolate(attrs[attrName])(scope);
@@ -8688,12 +8693,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             break;
 
           case '=':
-            if (!hasOwnProperty.call(attrs, attrName)) {
-              if (optional) break;
-              attrs[attrName] = void 0;
+            if (optional && !attrs[attrName]) {
+              return;
             }
-
             parentGet = $parse(attrs[attrName]);
+
             if (parentGet.literal) {
               compare = equals;
             } else {
@@ -8732,8 +8736,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             break;
 
           case '&':
-            // Don't assign Object.prototype method to scope
-            parentGet = attrs.hasOwnProperty(attrName) ? $parse(attrs[attrName]) : noop;
+            parentGet = $parse(attrs[attrName]);
 
             // Don't assign noop to destination if expression is not valid
             if (parentGet === noop && optional) break;
@@ -17472,12 +17475,14 @@ var $compileMinErr = minErr('$compile');
  * @name $templateRequest
  *
  * @description
- * The `$templateRequest` service downloads the provided template using `$http` and, upon success,
- * stores the contents inside of `$templateCache`. If the HTTP request fails or the response data
- * of the HTTP request is empty, a `$compile` error will be thrown (the exception can be thwarted
- * by setting the 2nd parameter of the function to true).
+ * The `$templateRequest` service runs security checks then downloads the provided template using
+ * `$http` and, upon success, stores the contents inside of `$templateCache`. If the HTTP request
+ * fails or the response data of the HTTP request is empty, a `$compile` error will be thrown (the
+ * exception can be thwarted by setting the 2nd parameter of the function to true). Note that the
+ * contents of `$templateCache` are trusted, so the call to `$sce.getTrustedUrl(tpl)` is omitted
+ * when `tpl` is of type string and `$templateCache` has the matching entry.
  *
- * @param {string} tpl The HTTP request template URL
+ * @param {string|TrustedResourceUrl} tpl The HTTP request template URL
  * @param {boolean=} ignoreRequestError Whether or not to ignore the exception when the request fails or the template is empty
  *
  * @return {Promise} a promise for the HTTP response data of the given URL.
@@ -17485,9 +17490,18 @@ var $compileMinErr = minErr('$compile');
  * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
  */
 function $TemplateRequestProvider() {
-  this.$get = ['$templateCache', '$http', '$q', function($templateCache, $http, $q) {
+  this.$get = ['$templateCache', '$http', '$q', '$sce', function($templateCache, $http, $q, $sce) {
     function handleRequestFn(tpl, ignoreRequestError) {
       handleRequestFn.totalPendingRequests++;
+
+      // We consider the template cache holds only trusted templates, so
+      // there's no need to go through whitelisting again for keys that already
+      // are included in there. This also makes Angular accept any script
+      // directive, no matter its name. However, we still need to unwrap trusted
+      // types.
+      if (!isString(tpl) || !$templateCache.get(tpl)) {
+        tpl = $sce.getTrustedResourceUrl(tpl);
+      }
 
       var transformResponse = $http.defaults && $http.defaults.transformResponse;
 
@@ -24009,8 +24023,8 @@ var ngIfDirective = ['$animate', function($animate) {
  * @param {Object} angularEvent Synthetic event object.
  * @param {String} src URL of content to load.
  */
-var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate', '$sce',
-                  function($templateRequest,   $anchorScroll,   $animate,   $sce) {
+var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate',
+                  function($templateRequest,   $anchorScroll,   $animate) {
   return {
     restrict: 'ECA',
     priority: 400,
@@ -24046,7 +24060,7 @@ var ngIncludeDirective = ['$templateRequest', '$anchorScroll', '$animate', '$sce
           }
         };
 
-        scope.$watch($sce.parseAsResourceUrl(srcExp), function ngIncludeWatchAction(src) {
+        scope.$watch(srcExp, function ngIncludeWatchAction(src) {
           var afterAnimation = function() {
             if (isDefined(autoScrollExp) && (!autoScrollExp || scope.$eval(autoScrollExp))) {
               $anchorScroll();

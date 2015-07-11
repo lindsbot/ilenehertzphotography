@@ -1,6 +1,11 @@
 <div class="gallery-container">
-<!-- <div class="arrow left-arrow"></div>
-<img ng-src="img/web_{{imageIndex}}.jpg">
-<div class="arrow right-arrow"></div> -->
-
+	<div class="arrow-container">
+		<div class="entypo arrow left-arrow" ng-click="prevImage()"></div>
+		<div class="entypo arrow right-arrow" ng-click="nextImage()"></div>
+	</div>
+	<img ng-src="{{currentImage.url}}">
+	<div ng-cloak class="caption-container">
+	    <div class="caption1">{{currentImage.caption1}}</div>
+		<div class="caption2">{{currentImage.caption2}}</div>
+	</div>
 </div>

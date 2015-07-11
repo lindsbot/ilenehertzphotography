@@ -1,6 +1,8 @@
 angular.module('ilenePhotoSite')
-.controller('galleryScrollController', function($scope, Lightbox){
-  // $scope.Lightbox = Lightbox;
+.controller('galleryScrollController', function(
+  $scope,
+  $window
+){
   $scope.imageCollection = [
     {
       url:'img/web_001.jpg',
@@ -74,6 +76,49 @@ angular.module('ilenePhotoSite')
     }
   ];
 
-  // Lightbox.openModal($scope.imageCollection, 0);
+  _counter = 0;
+  currentIndex = 0;
+
+  $scope.currentImage = {
+    url: $scope.imageCollection[currentIndex].url,
+    caption1: $scope.imageCollection[currentIndex].caption1,
+    caption2: $scope.imageCollection[currentIndex].caption2
+  };
+
+  updateCurrentImage = function(){
+    $scope.currentImage.url = $scope.imageCollection[currentIndex].url;
+    $scope.currentImage.caption1 = $scope.imageCollection[currentIndex].caption1;
+    $scope.currentImage.caption2 = $scope.imageCollection[currentIndex].caption2;
+  };
+  
+  $scope.nextImage = function(){
+    _counter++;
+    currentIndex = _counter % $scope.imageCollection.length;
+    updateCurrentImage();
+    console.log("clicked next!");
+  };
+
+  $scope.prevImage = function(){
+    if(_counter === 0){
+      _counter = $scope.imageCollection.length - 1;
+    }
+    else{
+      _counter--;
+    }
+    currentIndex = _counter % $scope.imageCollection.length;
+    updateCurrentImage();
+    console.log("clicked prev!");
+  };
+
+  angular.element($window).on('keyup', function(e) {
+    if(e.keyCode === 37){
+      $scope.prevImage();
+      $scope.$apply();
+    }
+    if(e.keyCode === 39){
+      $scope.nextImage();
+      $scope.$apply();
+    }
+  });
 
 });

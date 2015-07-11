@@ -8,8 +8,8 @@ app.config(function($routeProvider){
     .when('/about', {
       templateUrl: 'src/views/about.html'
     })
-    .when('/gallery', {
-      templateUrl: 'src/views/gallery.html'
+    .when('/portfolio', {
+      templateUrl: 'src/views/portfolio.html'
     })
     .when('/technique', {
       templateUrl: 'src/views/technique.html'

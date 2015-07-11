@@ -1,0 +1,22 @@
+{
+  "name": "develop_ilenehertzphotography",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lindsbot/ilenehertzphotography",
+  "authors": [
+    "Lindsay Hertz <lindsay.hertz@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.2",
+    "angular-bootstrap": "~0.13.0",
+    "angular-route": "~1.4.2"
+  }
+}
