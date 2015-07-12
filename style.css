@@ -1,6 +1,6 @@
 body {
   font-family: 'Julius Sans One', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 ul {
@@ -21,11 +21,15 @@ a:hover {
   width: 100%;
 }
 .name-title-container {
-  padding: 28px;
+  padding: 28px 0 5px 0;
   text-align: center;
 }
 .header-name {
-  font-size: 34px;
+  font-size: 36px;
+}
+
+.header-title {
+  padding: 12px;
 }
 
 .nav-links-container {
@@ -101,7 +105,7 @@ gallery-scroll img {
 }
 
 .caption2 {
-  font-size: 8pt;
+  font-size: 12px;
   font-style: italic;
 }
 
