@@ -7,10 +7,6 @@ ul {
   list-style: none;
 }
 
-li {
-  padding-bottom: 9px;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -22,14 +18,19 @@ a:hover {
 }
 
 .navigation-header-container {
-  height: 100px;
   width: 100%;
 }
-
-.header-name {
-  font-size: 18px;
-  padding: 26px;
+.name-title-container {
+  padding: 28px;
   text-align: center;
+}
+.header-name {
+  font-size: 34px;
+}
+
+.nav-links-container {
+  height: 22px;
+  padding: 8px;
 }
 
 .nav-links {
@@ -55,11 +56,8 @@ a:hover {
   margin: 5px auto;
 }
 
-
-
 gallery-scroll {
   display: block;
-  margin-top: 50px;
 }
 
 gallery-scroll img {
@@ -67,7 +65,10 @@ gallery-scroll img {
   margin: 5px auto;
 }
 
-
+.image-container {
+  display: table;
+  margin: 0 auto;
+}
 
 .arrow-container {
   position: absolute;
@@ -95,9 +96,8 @@ gallery-scroll img {
 
 .caption-container {
   position: relative;
-  left: 58%;
+  float: right;
   top: 24px;
-  max-width: 500px;
 }
 
 .caption2 {

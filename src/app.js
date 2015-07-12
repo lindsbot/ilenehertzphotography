@@ -1,4 +1,4 @@
-var app = angular.module('ilenePhotoSite', ['ngRoute', 'bootstrapLightbox']);
+var app = angular.module('ilenePhotoSite', ['ngRoute']);
 
 app.config(function($routeProvider){
   $routeProvider
@@ -25,6 +25,11 @@ app.config(function($routeProvider){
     });
 });
 
-app.controller('SiteController', function($scope){
+app.controller('SiteController', function($scope, $route, $location, $routeParams){
+
+  $scope.$route = $route;
+  $scope.$location = $location;
+  $scope.$routeParams = $routeParams;
+
   return;
 });

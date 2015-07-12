@@ -3,6 +3,7 @@ angular.module('ilenePhotoSite')
   $scope,
   $window
 ){
+
   $scope.imageCollection = [
     {
       url:'img/web_001.jpg',
@@ -86,6 +87,7 @@ angular.module('ilenePhotoSite')
   };
 
   updateCurrentImage = function(){
+    currentIndex = _counter % $scope.imageCollection.length;
     $scope.currentImage.url = $scope.imageCollection[currentIndex].url;
     $scope.currentImage.caption1 = $scope.imageCollection[currentIndex].caption1;
     $scope.currentImage.caption2 = $scope.imageCollection[currentIndex].caption2;
@@ -93,9 +95,7 @@ angular.module('ilenePhotoSite')
   
   $scope.nextImage = function(){
     _counter++;
-    currentIndex = _counter % $scope.imageCollection.length;
     updateCurrentImage();
-    console.log("clicked next!");
   };
 
   $scope.prevImage = function(){
@@ -105,9 +105,7 @@ angular.module('ilenePhotoSite')
     else{
       _counter--;
     }
-    currentIndex = _counter % $scope.imageCollection.length;
     updateCurrentImage();
-    console.log("clicked prev!");
   };
 
   angular.element($window).on('keyup', function(e) {

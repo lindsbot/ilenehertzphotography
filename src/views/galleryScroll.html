@@ -3,9 +3,13 @@
 		<div class="entypo arrow left-arrow" ng-click="prevImage()"></div>
 		<div class="entypo arrow right-arrow" ng-click="nextImage()"></div>
 	</div>
-	<img ng-src="{{currentImage.url}}">
-	<div ng-cloak class="caption-container">
-	    <div class="caption1">{{currentImage.caption1}}</div>
-		<div class="caption2">{{currentImage.caption2}}</div>
+
+	<div class="image-container">
+		<img ng-src="{{currentImage.url}}">
+		<div ng-cloak class="caption-container">
+		    <div class="caption1">{{currentImage.caption1}}</div>
+			<div class="caption2">{{currentImage.caption2}}</div>
+		</div>
 	</div>
+
 </div>
