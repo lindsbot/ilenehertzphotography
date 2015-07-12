@@ -53,7 +53,9 @@ a:hover {
   cursor: pointer;
 }
 
-
+.nav-links li.active {
+  border-bottom: 1px solid black;
+}
 
 .home-image img {
   display: block;

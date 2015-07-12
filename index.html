@@ -7,25 +7,7 @@
 </head>
 <body>
 
-  <div class="navigation-header-container">
-    <div class="name-title-container">
-      <a href='/#/'>
-        <div class="header-name">Ilene Hertz</div>
-        <div class="header-title">Fine Art Photographer</div>
-      </a>
-    </div>
-    <div class="nav-links-container">
-      <ul class="nav-links">
-        <li><a href='/#/'>Home</a></li>
-        <li><a href='#about'>About</a></li>
-        <li><a href='#portfolio'>Portfolio</a></li>
-        <li><a href='#technique'>Technique</a></li>
-        <li><a href='#blog'>Blog</a></li>
-        <li><a href='#contact'>Contact</a></li>
-      </ul>
-    </div>
-  </div>
-
+  <navigation-header></navigation-header>
   <div ng-view></div>
 
   <div class="social-links"> 
@@ -43,5 +25,6 @@
   <script type="text/javascript" src="src/app.js"></script>
   <script type="text/javascript" src="src/controllers/galleryScrollController.js"></script>
   <script type="text/javascript" src="src/directives/galleryScroll.js"></script>
+  <script type="text/javascript" src="src/directives/navigationHeader.js"></script>
 </body>
 </html>
