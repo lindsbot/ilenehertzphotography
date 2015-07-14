@@ -109,8 +109,42 @@ angular.module('ilenePhotoSite')
 
   ];
 
+
+  $scope.thumbnails = [
+    'img/Thumbnails/web_001_thumb.jpg',
+    'img/Thumbnails/web_002_thumb.jpg',
+    'img/Thumbnails/web_003_thumb.jpg',
+    'img/Thumbnails/web_004_thumb.jpg',
+    'img/Thumbnails/web_005_thumb.jpg',
+    'img/Thumbnails/web_006_thumb.jpg',
+    'img/Thumbnails/web_007_thumb.jpg',
+    'img/Thumbnails/web_008_thumb.jpg',
+    'img/Thumbnails/web_009_thumb.jpg',
+    'img/Thumbnails/web_010_thumb.jpg',
+    'img/Thumbnails/web_011_thumb.jpg',
+    'img/Thumbnails/web_012_thumb.jpg',
+    'img/Thumbnails/web_013_thumb.jpg',
+    'img/Thumbnails/web_014_thumb.jpg',
+    'img/Thumbnails/web_015_thumb.jpg',
+    'img/Thumbnails/web_016_thumb.jpg',
+    'img/Thumbnails/web_017_thumb.jpg'
+  ]
+
+  // for (var i=0; i <= $scope.imageCollection.length; i++){
+  //   $scope.thumbnails.push()
+  // }
+
+
+
   _counter = 0;
   currentIndex = 0;
+
+  $scope.isSelected = function(thumbUrl){
+    if (thumbUrl === $scope.thumbnails[currentIndex]){
+      return true;
+    }
+    return false;
+  };
 
   $scope.currentImage = {
     url: $scope.imageCollection[currentIndex].url,

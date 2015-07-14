@@ -11,5 +11,10 @@
 			<div class="caption2">{{currentImage.caption2}}</div>
 		</div>
 	</div>
+	<div class="thumbnail-container">
+
+		<img ng-class='{selected: isSelected(thumb)}' ng-repeat="thumb in thumbnails" ng-src="{{thumb}}">
+
+	</div>
 
 </div>
