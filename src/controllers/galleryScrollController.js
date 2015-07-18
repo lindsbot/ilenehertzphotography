@@ -68,7 +68,7 @@ angular.module('ilenePhotoSite')
     {
       url:'img/web_011.jpg',
       caption1: 'Orange Tulip',
-      caption2: 'Tulip'
+      caption2: 'Tulipa'
     },
 
     {
@@ -79,22 +79,21 @@ angular.module('ilenePhotoSite')
 
     {
       url:'img/web_013.jpg',
+      caption1: 'Red Tulip with Leaf Outline',
+      caption2: 'Tulipa'
+    },
+
+    {
+      url:'img/web_014.jpg',
       caption1: 'Anemones Dance',
       caption2: 'Anemone coronaria'
     },
 
     {
-      url:'img/web_014.jpg',
+      url:'img/web_015.jpg',
       caption1: 'Pink Campanula',
       caption2: 'Campanula medium'
     },
-
-    {
-      url:'img/web_015.jpg',
-      caption1: 'Sea of Paper Whites',
-      caption2: 'Narcissus papyraceus'
-    },
-
     {
       url:'img/web_016.jpg',
       caption1: 'Yellow Poppy and Bud',
