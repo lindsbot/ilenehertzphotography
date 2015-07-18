@@ -135,8 +135,8 @@ angular.module('ilenePhotoSite')
 
 
 
-  _counter = 0;
-  currentIndex = 0;
+  var _counter = 0;
+  var currentIndex = 0;
 
   $scope.isSelected = function(thumbUrl){
     if (thumbUrl === $scope.thumbnails[currentIndex]){
@@ -145,17 +145,11 @@ angular.module('ilenePhotoSite')
     return false;
   };
 
-  $scope.currentImage = {
-    url: $scope.imageCollection[currentIndex].url,
-    caption1: $scope.imageCollection[currentIndex].caption1,
-    caption2: $scope.imageCollection[currentIndex].caption2
-  };
+  $scope.currentImage = $scope.imageCollection[currentIndex]
 
   updateCurrentImage = function(){
     currentIndex = _counter % $scope.imageCollection.length;
-    $scope.currentImage.url = $scope.imageCollection[currentIndex].url;
-    $scope.currentImage.caption1 = $scope.imageCollection[currentIndex].caption1;
-    $scope.currentImage.caption2 = $scope.imageCollection[currentIndex].caption2;
+    $scope.currentImage = $scope.imageCollection[currentIndex];
   };
   
   $scope.nextImage = function(){
@@ -170,6 +164,11 @@ angular.module('ilenePhotoSite')
     else{
       _counter--;
     }
+    updateCurrentImage();
+  };
+
+  $scope.selectImage = function($index){
+    _counter = $index;
     updateCurrentImage();
   };
 

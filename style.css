@@ -17,6 +17,8 @@ a:hover {
   text-decoration: none;
 }
 
+/* NAVIGATION */ 
+/* ========== */
 .navigation-header-container {
   width: 100%;
 }
@@ -57,11 +59,15 @@ a:hover {
   border-bottom: 1px solid black;
 }
 
+/* HOME PAGE */ 
+/* ========== */
 .home-image img {
   display: block;
   margin: 5px auto;
 }
 
+/* PORTFOLIO */ 
+/* ========== */
 gallery-scroll {
   display: block;
 }
@@ -120,6 +126,7 @@ gallery-scroll img {
 .thumbnail-container img {
   display: inline-block;
   padding: 2px;
+  cursor: pointer;
 }
 
 .thumbnail-container img.selected {
@@ -127,6 +134,24 @@ gallery-scroll img {
   border-radius: 2px;
 }
 
+/* TECHNIQUE */ 
+/* ========== */
+.technique p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  width: 50%;
+  margin: auto;
+}
+
+.technique img {
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+
+
+/* FOOTER */ 
+/* ========== */
 .social-links {
   margin-top: 125px;
   text-align: center;
